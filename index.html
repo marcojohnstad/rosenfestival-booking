@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Standforkyndelse ved Rosenfestivalen</title>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <main class="page">
+    <header class="hero">
+      <p class="eyebrow">Bogense · 1.–2. august 2026</p>
+
+      <h1>Standforkyndelse ved Rosenfestivalen</h1>
+
+      <p class="intro">
+        Vælg det tidspunkt, hvor du gerne vil være med.
+        Der er plads til to personer pr. tidsrum.
+        Du kan booke dig selv eller både dig selv og en makker.
+      </p>
+    </header>
+
+    <section class="booking-panel" aria-labelledby="schedule-heading">
+      <div class="section-heading">
+        <div>
+          <p class="section-label">Vagtplan</p>
+          <h2 id="schedule-heading">Vælg et tidspunkt</h2>
+        </div>
+
+        <button
+          id="refresh-button"
+          class="button button-secondary button-small"
+          type="button"
+        >
+          Opdatér
+        </button>
+      </div>
+
+      <div class="date-tabs" role="tablist" aria-label="Vælg dag">
+        <button
+          class="date-tab active"
+          data-date="2026-08-01"
+          type="button"
+          role="tab"
+          aria-selected="true"
+        >
+          <span>Lørdag</span>
+          <strong>1. august</strong>
+        </button>
+
+        <button
+          class="date-tab"
+          data-date="2026-08-02"
+          type="button"
+          role="tab"
+          aria-selected="false"
+        >
+          <span>Søndag</span>
+          <strong>2. august</strong>
+        </button>
+      </div>
+
+      <div
+        id="status-message"
+        class="status-message"
+        aria-live="polite"
+      ></div>
+
+      <div id="loading" class="loading">
+        Henter ledige tider…
+      </div>
+
+      <div id="time-slots" class="time-slots"></div>
+    </section>
+  </main>
+
+  <div
+    id="modal"
+    class="modal"
+    aria-hidden="true"
+  >
+    <div class="modal-backdrop" data-close-modal></div>
+
+    <section
+      class="modal-card"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
+    >
+      <button
+        class="modal-close"
+        type="button"
+        aria-label="Luk"
+        data-close-modal
+      >
+        ×
+      </button>
+
+      <p class="section-label">Booking</p>
+      <h2 id="modal-title">Book tidspunkt</h2>
+      <p id="selected-time" class="selected-time"></p>
+
+      <form id="booking-form">
+        <div class="form-group">
+          <label for="first-name">Dit navn</label>
+          <input
+            id="first-name"
+            name="firstName"
+            type="text"
+            maxlength="80"
+            autocomplete="name"
+            placeholder="Fornavn og efternavn"
+            required
+          >
+        </div>
+
+        <label class="partner-choice">
+          <input
+            id="has-partner"
+            name="hasPartner"
+            type="checkbox"
+          >
+          <span>Jeg har en makker med</span>
+        </label>
+
+        <div id="partner-group" class="form-group hidden">
+          <label for="partner-name">Din makkers navn</label>
+          <input
+            id="partner-name"
+            name="partnerName"
+            type="text"
+            maxlength="80"
+            placeholder="Fornavn og efternavn"
+          >
+        </div>
+
+        <p id="form-error" class="form-error" aria-live="polite"></p>
+
+        <button
+          id="submit-button"
+          class="button button-primary"
+          type="submit"
+        >
+          Bekræft booking
+        </button>
+      </form>
+    </section>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
